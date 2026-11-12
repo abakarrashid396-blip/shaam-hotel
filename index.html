@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="so">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHAAM HOTEL - Maamulka Hoteelka</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loginPage" class="login-page">
+        <div class="login-box">
+            <h1>SHAAM HOTEL</h1>
+            <p>Nidaamka Maamulka Hoteelka</p>
+
+            <form id="loginForm">
+                <input type="text" id="loginUsername"
+                    placeholder="Magaca isticmaalaha" required>
+
+                <input type="password" id="loginPassword"
+                    placeholder="Furaha sirta ah" required>
+
+                <button type="submit">Gal System-ka</button>
+                <p id="loginMessage"></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="app" class="app hidden">
+
+        <aside class="sidebar">
+            <h2>SHAAM HOTEL</h2>
+
+            <nav>
+                <button data-view="dashboard">Dashboard</button>
+                <button data-view="rooms">Qolalka</button>
+                <button data-view="bookings">Boos-qabsiga</button>
+                <button data-view="customers">Macaamiisha</button>
+                <button data-view="payments">Lacag-bixinta</button>
+                <button data-view="reports">Warbixinnada</button>
+                <button data-view="admin">Maamulka</button>
+            </nav>
+
+            <button id="logoutBtn" class="logout">Ka bax</button>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <h2 id="pageTitle">Dashboard</h2>
+                <span id="currentUser">Maamule</span>
+            </header>
+
+            <section id="dashboard" class="view">
+                <h2>Guudmarka Hoteelka</h2>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <h3>Wadarta Qolalka</h3>
+                        <p id="totalRooms">21</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Qolalka Bannaan</h3>
+                        <p id="availableRooms">21</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Qolalka La Deggan Yahay</h3>
+                        <p id="occupiedRooms">0</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Wadarta Dakhliga</h3>
+                        <p id="totalIncome">0 Br</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="rooms" class="view hidden">
+                <h2>Maamulka Qolalka</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Lambarka Qolka</th>
+                                <th>Nooca Qolka</th>
+                                <th>Qiimaha Habeenkii</th>
+                                <th>Xaaladda</th>
+                                <th>Ficil</th>
+                            </tr>
+                        </thead>
+                        <tbody id="roomsTable"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="bookings" class="view hidden">
+                <h2>Boos-qabsi Cusub</h2>
+
+                <form id="bookingForm" class="form-card">
+                    <input type="text" id="customerName"
+                        placeholder="Magaca macmiilka" required>
+
+                    <input type="tel" id="customerPhone"
+                        placeholder="Telefoonka" required>
+
+                    <select id="roomSelect" required>
+                        <option value="">Dooro qolka</option>
+                    </select>
+
+                    <label>Taariikhda soo gelitaanka</label>
+                    <input type="date" id="checkIn" required>
+
+                    <label>Taariikhda bixitaanka</label>
+                    <input type="date" id="checkOut" required>
+
+                    <button type="submit">Samee Boos-qabsi</button>
+                </form>
+
+                <h3>Boos-qabsiyada</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Macmiilka</th>
+                            <th>Qolka</th>
+                            <th>Taariikhda</th>
+                            <th>Qiimaha</th>
+                            <th>Ficil</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTable"></tbody>
+                </table>
+            </section>
+
+            <section id="customers" class="view hidden">
+                <h2>Macaamiisha</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Magaca</th>
+                            <th>Telefoonka</th>
+                            <th>Qolka</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customersTable"></tbody>
+                </table>
+            </section>
+
+            <section id="payments" class="view hidden">
+                <h2>Lacag-bixinta</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Macmiilka</th>
+                            <th>Qolka</th>
+                            <th>Lacagta</th>
+                            <th>Taariikhda</th>
+                        </tr>
+                    </thead>
+                    <tbody id="paymentsTable"></tbody>
+                </table>
+            </section>
+
+            <section id="reports" class="view hidden">
+                <h2>Warbixinnada</h2>
+                <div class="stat-card">
+                    <h3>Wadarta Dakhliga</h3>
+                    <p id="reportIncome">0 Br</p>
+                </div>
+            </section>
+
+            <section id="admin" class="view hidden">
+                <h2>Maamulka Qiimaha Qolalka</h2>
+
+                <form id="priceForm" class="form-card">
+                    <select id="priceRoom" required></select>
+
+                    <input type="number" id="newPrice"
+                        placeholder="Qiimaha cusub (Br)" min="1" required>
+
+                    <button type="submit">Cusboonaysii Qiimaha</button>
+                </form>
+
+                <h3>Maamulka Isticmaalayaasha</h3>
+                <form id="userForm" class="form-card">
+                    <input type="text" id="newAdminUsername"
+                        placeholder="Magaca isticmaalaha" required>
+
+                    <input type="password" id="newAdminPassword"
+                        placeholder="Furaha sirta ah" required>
+
+                    <button type="submit">Ku dar Maamule</button>
+                </form>
+
+                <div id="adminMessage"></div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
