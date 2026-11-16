@@ -1,205 +1,368 @@
-
 <!DOCTYPE html>
 <html lang="so">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHAAM HOTEL - Maamulka Hoteelka</title>
+
+    <title>Shaam Hotel Management System</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
 
-    <div id="loginPage" class="login-page">
-        <div class="login-box">
-            <h1>SHAAM HOTEL</h1>
-            <p>Nidaamka Maamulka Hoteelka</p>
+    <!-- ================= AUTHENTICATION ================= -->
+
+    <section id="authScreen" class="auth-screen">
+
+        <div class="auth-brand">
+            <div class="brand-logo">
+                <i class="fa-solid fa-hotel"></i>
+            </div>
+
+            <h1>SHAAM <span>HOTEL</span></h1>
+            <p>Luxury Hospitality Management</p>
+        </div>
+
+        <div class="auth-card">
+
+            <div class="auth-heading">
+                <h2>Welcome Back</h2>
+                <p>Sign in to access Shaam Hotel system</p>
+            </div>
+
+            <div class="auth-tabs">
+                <button id="loginTab" class="auth-tab active" type="button">
+                    Login
+                </button>
+
+                <button id="registerTab" class="auth-tab" type="button">
+                    Register
+                </button>
+            </div>
+
+            <!-- LOGIN FORM -->
 
             <form id="loginForm">
-                <input type="text" id="loginUsername"
-                    placeholder="Magaca isticmaalaha" required>
 
-                <input type="password" id="loginPassword"
-                    placeholder="Furaha sirta ah" required>
+                <div class="form-group">
+                    <label for="loginUsername">Username</label>
 
-                <button type="submit">Gal System-ka</button>
-                <p id="loginMessage"></p>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="loginUsername"
+                            placeholder="Enter username"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPin">PIN</label>
+
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="loginPin"
+                            placeholder="Enter your PIN"
+                            maxlength="4"
+                            inputmode="numeric"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <p id="loginMessage" class="form-message"></p>
+
+                <button type="submit" class="primary-btn">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Sign In
+                </button>
+
+                <p class="auth-note">
+                    Customer? Create an account using Register.
+                </p>
+
             </form>
+
+            <!-- REGISTER FORM -->
+
+            <form id="registerForm" class="hidden">
+
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-id-card"></i>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            placeholder="Enter your full name"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="newUsername">Username</label>
+
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="newUsername"
+                            placeholder="Create username"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="newPin">Create 4-digit PIN</label>
+
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="newPin"
+                            placeholder="Create PIN"
+                            maxlength="4"
+                            inputmode="numeric"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPin">Confirm PIN</label>
+
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        <input
+                            type="password"
+                            id="confirmPin"
+                            placeholder="Confirm PIN"
+                            maxlength="4"
+                            inputmode="numeric"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <p id="registerMessage" class="form-message"></p>
+
+                <button type="submit" class="primary-btn">
+                    <i class="fa-solid fa-user-plus"></i>
+                    Create Account
+                </button>
+
+            </form>
+
         </div>
-    </div>
+
+        <div class="auth-footer">
+            © 2026 Shaam Hotel. All Rights Reserved.
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAIN APPLICATION ================= -->
 
     <div id="app" class="app hidden">
 
-        <aside class="sidebar">
-            <h2>SHAAM HOTEL</h2>
+        <!-- SIDEBAR -->
 
-            <nav>
-                <button data-view="dashboard">Dashboard</button>
-                <button data-view="rooms">Qolalka</button>
-                <button data-view="bookings">Boos-qabsiga</button>
-                <button data-view="customers">Macaamiisha</button>
-                <button data-view="payments">Lacag-bixinta</button>
-                <button data-view="reports">Warbixinnada</button>
-                <button data-view="admin">Maamulka</button>
+        <aside id="sidebar" class="sidebar">
+
+            <div class="sidebar-brand">
+
+                <div class="brand-icon">
+                    <i class="fa-solid fa-hotel"></i>
+                </div>
+
+                <div>
+                    <h2>SHAAM HOTEL</h2>
+                    <span>Management System</span>
+                </div>
+
+            </div>
+
+            <div class="sidebar-label">
+                MAIN MENU
+            </div>
+
+            <nav id="mainNav" class="main-nav">
+
+                <button class="nav-link active" data-page="dashboard">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </button>
+
+                <button class="nav-link" data-page="bookings">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span>Bookings</span>
+                </button>
+
+                <button class="nav-link" data-page="rooms">
+                    <i class="fa-solid fa-bed"></i>
+                    <span>Rooms</span>
+                </button>
+
+                <button class="nav-link" data-page="customers">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Customers</span>
+                </button>
+
+                <button class="nav-link" data-page="payments">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <span>Payments</span>
+                </button>
+
+                <button class="nav-link" data-page="reports">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Reports</span>
+                </button>
+
+                <button class="nav-link" data-page="mybookings">
+                    <i class="fa-solid fa-ticket"></i>
+                    <span>My Bookings</span>
+                </button>
+
+                <div class="sidebar-label admin-menu-label">
+                    MANAGEMENT
+                </div>
+
+                <button class="nav-link admin-only" data-page="staff">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <span>Staff Management</span>
+                </button>
+
             </nav>
 
-            <button id="logoutBtn" class="logout">Ka bax</button>
+            <div class="sidebar-bottom">
+
+                <div class="sidebar-hotel-info">
+                    <i class="fa-solid fa-star"></i>
+
+                    <div>
+                        <strong>Shaam Hotel</strong>
+                        <small>Luxury Experience</small>
+                    </div>
+                </div>
+
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Logout</span>
+                </button>
+
+            </div>
+
         </aside>
 
+
+        <!-- MAIN CONTENT -->
+
         <main class="main-content">
+
+            <!-- TOPBAR -->
+
             <header class="topbar">
-                <h2 id="pageTitle">Dashboard</h2>
-                <span id="currentUser">Maamule</span>
+
+                <div class="topbar-left">
+
+                    <button id="mobileMenu" class="mobile-menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <div>
+                        <h2 id="pageTitle">Dashboard</h2>
+                        <p id="todayLabel">Welcome to Shaam Hotel</p>
+                    </div>
+
+                </div>
+
+                <div class="topbar-right">
+
+                    <div class="language-box">
+                        <i class="fa-solid fa-globe"></i>
+
+                        <select id="languageSelect">
+                            <option value="so">Somali</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+
+                    <div class="topbar-user">
+
+                        <div class="user-avatar" id="userAvatar">
+                            S
+                        </div>
+
+                        <div class="user-details">
+                            <strong id="userName">User</strong>
+                            <span id="userRole">Customer</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
             </header>
 
-            <section id="dashboard" class="view">
-                <h2>Guudmarka Hoteelka</h2>
 
-                <div class="stats">
-                    <div class="stat-card">
-                        <h3>Wadarta Qolalka</h3>
-                        <p id="totalRooms">21</p>
-                    </div>
+            <!-- PAGE CONTENT -->
 
-                    <div class="stat-card">
-                        <h3>Qolalka Bannaan</h3>
-                        <p id="availableRooms">21</p>
-                    </div>
+            <section id="pageContent" class="page-content">
 
-                    <div class="stat-card">
-                        <h3>Qolalka La Deggan Yahay</h3>
-                        <p id="occupiedRooms">0</p>
-                    </div>
+                <!-- JavaScript ayaa halkan ku soo bandhigaya bogagga -->
 
-                    <div class="stat-card">
-                        <h3>Wadarta Dakhliga</h3>
-                        <p id="totalIncome">0 Br</p>
-                    </div>
-                </div>
             </section>
 
-            <section id="rooms" class="view hidden">
-                <h2>Maamulka Qolalka</h2>
 
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Lambarka Qolka</th>
-                                <th>Nooca Qolka</th>
-                                <th>Qiimaha Habeenkii</th>
-                                <th>Xaaladda</th>
-                                <th>Ficil</th>
-                            </tr>
-                        </thead>
-                        <tbody id="roomsTable"></tbody>
-                    </table>
-                </div>
-            </section>
+            <!-- FOOTER -->
 
-            <section id="bookings" class="view hidden">
-                <h2>Boos-qabsi Cusub</h2>
-
-                <form id="bookingForm" class="form-card">
-                    <input type="text" id="customerName"
-                        placeholder="Magaca macmiilka" required>
-
-                    <input type="tel" id="customerPhone"
-                        placeholder="Telefoonka" required>
-
-                    <select id="roomSelect" required>
-                        <option value="">Dooro qolka</option>
-                    </select>
-
-                    <label>Taariikhda soo gelitaanka</label>
-                    <input type="date" id="checkIn" required>
-
-                    <label>Taariikhda bixitaanka</label>
-                    <input type="date" id="checkOut" required>
-
-                    <button type="submit">Samee Boos-qabsi</button>
-                </form>
-
-                <h3>Boos-qabsiyada</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Macmiilka</th>
-                            <th>Qolka</th>
-                            <th>Taariikhda</th>
-                            <th>Qiimaha</th>
-                            <th>Ficil</th>
-                        </tr>
-                    </thead>
-                    <tbody id="bookingsTable"></tbody>
-                </table>
-            </section>
-
-            <section id="customers" class="view hidden">
-                <h2>Macaamiisha</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Magaca</th>
-                            <th>Telefoonka</th>
-                            <th>Qolka</th>
-                        </tr>
-                    </thead>
-                    <tbody id="customersTable"></tbody>
-                </table>
-            </section>
-
-            <section id="payments" class="view hidden">
-                <h2>Lacag-bixinta</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Macmiilka</th>
-                            <th>Qolka</th>
-                            <th>Lacagta</th>
-                            <th>Taariikhda</th>
-                        </tr>
-                    </thead>
-                    <tbody id="paymentsTable"></tbody>
-                </table>
-            </section>
-
-            <section id="reports" class="view hidden">
-                <h2>Warbixinnada</h2>
-                <div class="stat-card">
-                    <h3>Wadarta Dakhliga</h3>
-                    <p id="reportIncome">0 Br</p>
-                </div>
-            </section>
-
-            <section id="admin" class="view hidden">
-                <h2>Maamulka Qiimaha Qolalka</h2>
-
-                <form id="priceForm" class="form-card">
-                    <select id="priceRoom" required></select>
-
-                    <input type="number" id="newPrice"
-                        placeholder="Qiimaha cusub (Br)" min="1" required>
-
-                    <button type="submit">Cusboonaysii Qiimaha</button>
-                </form>
-
-                <h3>Maamulka Isticmaalayaasha</h3>
-                <form id="userForm" class="form-card">
-                    <input type="text" id="newAdminUsername"
-                        placeholder="Magaca isticmaalaha" required>
-
-                    <input type="password" id="newAdminPassword"
-                        placeholder="Furaha sirta ah" required>
-
-                    <button type="submit">Ku dar Maamule</button>
-                </form>
-
-                <div id="adminMessage"></div>
-            </section>
+            <footer class="main-footer">
+                <p>
+                    © 2026 Shaam Hotel Management System.
+                    All Rights Reserved.
+                </p>
+            </footer>
 
         </main>
+
     </div>
 
+
+    <!-- ================= TOAST MESSAGE ================= -->
+
+    <div id="toast" class="toast"></div>
+
+
+    <!-- ================= MODAL ROOT ================= -->
+
+    <div id="modalRoot"></div>
+
+
+    <!-- JAVASCRIPT -->
+
     <script src="app.js"></script>
+
 </body>
 </html>
